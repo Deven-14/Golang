@@ -1,0 +1,91 @@
+Programs start running in package main.
+
+
+
+In Go, a name is exported if it begins with a capital letter. For example, Pizza is an exported name, as is Pi, which is exported from the math package.
+
+pizza and pi do not start with a capital letter, so they are not exported.
+
+When importing a package, you can refer only to its exported names. Any "unexported" names are not accessible from outside the package.
+
+
+
+A function can take zero or more arguments & can return any number of results.
+
+In this example, add takes two parameters of type int.
+
+Notice that the type comes after the variable name.
+
+func add(x int, y int) int { return x + y }
+func add(x, y int) int { return x + y }
+func swap(x, y int) (int, int) { return y, x }
+
+
+Go's return values may be named. If so, they are treated as variables defined at the top of the function.
+These names should be used to document the meaning of the return values.
+A return statement without arguments returns the named return values. This is known as a "naked" return.
+Naked return statements should be used only in short functions, as with the example shown here. They can harm readability in longer functions.
+
+func split(sum int) (x, y int) {
+    x = sum / 2
+    y = sum - x
+    return
+}
+
+
+
+
+The var statement declares a list of variables; as in function argument lists, the type is last.
+A var statement can be at package or function level.
+
+var a, b, c int
+
+A var declaration can include initializers, one per variable.
+If an initializer is present, the type can be omitted; the variable will take the type of the initializer.
+
+var a, b = 1, true
+a := 5
+
+Outside a function, every statement begins with a keyword (var, func, and so on) and so the := construct is not available.
+
+
+
+
+Basic Types in Go
+
+bool
+string
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+byte // alias for uint8
+rune // alias for int32 // represents a Unicode code point
+float32 float64
+complex64 complex128
+
+When you need an integer value you should use int unless you have a specific reason to use a sized or unsigned integer type.
+
+Variables declared without an explicit initial value are given their zero value.
+The zero value is:
+0 for numeric types,
+false for the boolean type, and
+"" (the empty string) for strings.
+
+
+
+
+Constants are declared like variables, but with the const keyword.
+Constants can be character, string, boolean, or numeric values.
+Constants cannot be declared using the := syntax.
+
+const a int = 5
+const b = 10.2
+
+
+
+Numeric constants are high-precision values.
+An untyped constant takes the type needed by its context.
+const (
+    Big = 1 << 100
+    Small = Big >> 99
+)
+
