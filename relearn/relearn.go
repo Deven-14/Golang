@@ -6,6 +6,8 @@ import (
 	"math/rand"
 	"runtime"
 	"time"
+
+	"golang.org/x/tour/pic"
 )
 
 func add(x, y int) int {
@@ -133,6 +135,109 @@ func structs() {
 	fmt.Println(v1, v2, v3, p2)
 }
 
+func arrays() {
+
+	var a [10]int
+	a[0] = 5
+	a[1] = 10
+	fmt.Println(a)
+
+	b := [3]string{"a", "b", "c"}
+	fmt.Println(b)
+
+}
+
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
+func Pic(dx, dy int) [][]uint8 {
+	a := make([][]uint8, dy)
+	for i := range a {
+		a[i] = make([]uint8, dx)
+	}
+
+	for i := range a {
+		for j := range a[i] {
+			a[i][j] = uint8(i + j)
+		}
+	}
+
+	return a
+}
+
+func slices() {
+
+	a := [5]int{1, 2, 3, 4, 5}
+	s := a[1:4]
+	s2 := a[0:2]
+	fmt.Println(a, s, s2)
+	s[0] = 1
+	fmt.Println(a, s, s2) // a, s, s2 all change
+
+	c := []bool{true, false, true} // builds an array and then builds a slice that references it
+	fmt.Println(c, a[:5], a[2:], a[:])
+
+	s3 := []struct {
+		i int
+		b bool
+	}{
+		{2, true},
+		{3, false},
+		{5, true},
+		{7, true},
+		{11, false},
+		{13, true},
+	}
+	fmt.Println(s3)
+
+	s4 := []int{2, 3, 5, 7, 11, 13}
+	printSlice(s4) // len = 6, cap=6
+
+	// Slice the slice to give it zero length.
+	printSlice(s4[:0]) // len=0, cap=6
+
+	// Extend its length.
+	printSlice(s4[:4]) // len=4, cap=6
+
+	// Drop its first two values.
+	printSlice(s4[2:]) // * len=4, cap=4
+
+	printSlice(s4[2:4]) // len=2, cap=4
+
+	var s5 []int                                 // nil
+	fmt.Println(s5, len(s5), cap(s5), s5 == nil) // true
+
+	d := make([]int, 5)    // len = cap = 5
+	e := make([]int, 0, 5) // len = 0, cap = 5
+	printSlice(d)
+	printSlice(e)
+
+	f := [][]string{{"a", "b"}, {"c", "d"}}
+	fmt.Println(f)
+
+	g := []int{}
+
+	g = append(g, 0)
+	g = append(g, 1, 2)
+	printSlice(g)
+
+	h := g[:1]
+	h = append(h, 5)
+	fmt.Println(h, g) // modifies g
+
+	for i, v := range g {
+		fmt.Print(i, v, "  ")
+	}
+
+	for i := range g { // * we can drop the value if we need only the index, and we can also use _ to skip like i, _ or _, v
+		fmt.Print(i, "  ")
+	}
+
+	pic.Show(Pic)
+
+}
+
 func main() {
 	var a, b = 1, true
 	var x, y = swap(3, 4)
@@ -163,5 +268,9 @@ func main() {
 	pointers()
 
 	structs()
+
+	arrays()
+
+	slices()
 
 }
