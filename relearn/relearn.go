@@ -102,6 +102,9 @@ func main() {
 	var a, b = 1, true
 	var x, y = swap(3, 4)
 	c := float64(a)
+
+	defer fmt.Println("completed with main function")
+
 	fmt.Println("abc", rand.Intn(10), add(3, 4), a, b, x, y, c, float64(Big), Small)
 
 	fmt.Println(sumOfN1(5), sumOfN2(5))
