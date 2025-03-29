@@ -89,3 +89,84 @@ const (
     Small = Big >> 99
 )
 
+
+
+
+Flow control statements: for, if, else, switch and defer
+
+
+
+For
+Go has only one looping construct, the for loop.
+
+The basic for loop has three components separated by semicolons:
+
+the init statement: executed before the first iteration
+the condition expression: evaluated before every iteration
+the post statement: executed at the end of every iteration
+The init statement will often be a short variable declaration, and the variables declared there are visible only in the scope of the for statement.
+
+The loop will stop iterating once the boolean condition evaluates to false.
+
+Note: Unlike other languages like C, Java, or JavaScript there are no parentheses surrounding the three components of the for statement and the braces { } are always required.
+
+func sumOfN1(n int) (sum int) {
+	for i := 0; i < n; i++ {
+		sum += i
+	}
+	return sum
+}
+
+The init and post statements are optional.
+
+func sumOfN2(n int) (sum int) {
+	i := 0
+	for ; i < n; {
+		sum += i
+		i ++
+	}
+	return sum
+}
+
+func sumOfN2(n int) (sum int) {
+	i := 0
+	for ; i < n; {
+		sum += i
+		i ++
+	}
+	return sum
+}
+
+func sumOfN2(n int) (sum int) {
+	i := 0
+	for i < n {
+		sum += i
+		i++
+	}
+	return sum
+}
+
+If you omit the loop condition it loops forever, so an infinite loop is compactly expressed.
+
+func main() {
+	for {
+	}
+}
+
+
+
+
+
+If 
+Go's if statements are like its for loops; the expression need not be surrounded by parentheses ( ) but the braces { } are required.
+
+Like for, the if statement can start with a short statement to execute before the condition.
+Variables declared by the statement are only in scope until the end of the if.
+
+if z := 5; z > 0 {
+    fmt.Println(z)
+}
+
+
+
+
