@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"runtime"
+	"time"
 )
 
 func add(x, y int) int {
@@ -48,10 +50,52 @@ func Sqrt(x float64) float64 {
 	for math.Abs(z-prev) > 0.0001 {
 		prev = z
 		z -= (z*z - x) / (2 * z)
-		fmt.Println(z, prev)
+		// fmt.Println(z, prev)
 	}
-	fmt.Printf("Sqrt of %f = %f", x, z)
+	fmt.Printf("Sqrt of %f = %f\n", x, z)
 	return z
+}
+
+func Switch() {
+	fmt.Print("Go runs on ")
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println("Linux.")
+	default:
+		fmt.Printf("%s.\n", os)
+	}
+}
+
+func Switch2() {
+	fmt.Print("When's Saturday = ")
+	today := time.Now().Weekday()
+
+	switch time.Saturday {
+	case today:
+		fmt.Println("today.")
+	case today + 1:
+		fmt.Println("tomorrow.")
+	case today + 2:
+		fmt.Println("In two days.")
+	default:
+		fmt.Println("far away.")
+	}
+
+}
+
+func SwitchTrue() {
+	// switchTrue
+	t := time.Now()
+	switch { // switch true
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
+	}
 }
 
 func main() {
@@ -73,5 +117,9 @@ func main() {
 	}
 
 	Sqrt(49)
+
+	Switch()
+	Switch2()
+	SwitchTrue()
 
 }
