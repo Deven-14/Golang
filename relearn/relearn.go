@@ -98,6 +98,41 @@ func SwitchTrue() {
 	}
 }
 
+func pointers() {
+	x := 5
+	var p *int = &x
+	fmt.Println(*p, x)
+	*p = 5
+	fmt.Println(*p, x)
+}
+
+func structs() {
+	type Vertex struct {
+		X int
+		Y int
+	}
+
+	v := Vertex{1, 2}
+
+	fmt.Println(v, v.X, v.Y)
+
+	p := &v
+	p.X = 5
+	fmt.Println(p, v, p.X, v.X)
+
+	type Vertex2 struct {
+		X, Y int
+	}
+
+	var (
+		v1 = Vertex{1, 2}
+		v2 = Vertex{X: 1}
+		v3 = Vertex{}
+		p2 = &Vertex{1, 2}
+	)
+	fmt.Println(v1, v2, v3, p2)
+}
+
 func main() {
 	var a, b = 1, true
 	var x, y = swap(3, 4)
@@ -124,5 +159,9 @@ func main() {
 	Switch()
 	Switch2()
 	SwitchTrue()
+
+	pointers()
+
+	structs()
 
 }
