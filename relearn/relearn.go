@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 )
 
@@ -40,6 +41,19 @@ func sumOfN2(n int) (sum int) {
 	return sum
 }
 
+func Sqrt(x float64) float64 {
+	//  Newton's method - https://go.dev/tour/flowcontrol/8
+	z := 1.0
+	prev := 0.0
+	for math.Abs(z-prev) > 0.0001 {
+		prev = z
+		z -= (z*z - x) / (2 * z)
+		fmt.Println(z, prev)
+	}
+	fmt.Printf("Sqrt of %f = %f", x, z)
+	return z
+}
+
 func main() {
 	var a, b = 1, true
 	var x, y = swap(3, 4)
@@ -57,5 +71,7 @@ func main() {
 	} else {
 		fmt.Println(-z)
 	}
+
+	Sqrt(49)
 
 }
