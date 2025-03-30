@@ -334,7 +334,7 @@ func functionValues() {
 
 }
 
-func main() {
+func relearn1() {
 	var a, b = 1, true
 	var x, y = swap(3, 4)
 	c := float64(a)
