@@ -288,6 +288,52 @@ func maps() {
 
 }
 
+func compute(fn func(x, y float64) float64) float64 {
+	return fn(3, 4)
+}
+
+func adder() func(x int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+
+// fibonacci is a function that returns
+// a function that returns an int.
+func fibonacci() func() int {
+	first, second := 0, 1
+	return func() int {
+		prev := first
+		first, second = second, first+second
+		return prev
+	}
+}
+
+func functionValues() {
+
+	sumOfSquares := func(x, y float64) float64 {
+		return math.Pow(x, 2) + math.Pow(y, 2)
+	}
+
+	fmt.Println(sumOfSquares(5, 4))
+
+	fmt.Println(compute(sumOfSquares))
+	fmt.Println(compute(math.Pow))
+
+	pos, neg := adder(), adder()
+	for i := range 10 {
+		fmt.Println(pos(i), neg(-2*i))
+	}
+
+	f := fibonacci()
+	for range 10 {
+		fmt.Println(f())
+	}
+
+}
+
 func main() {
 	var a, b = 1, true
 	var x, y = swap(3, 4)
@@ -323,6 +369,8 @@ func main() {
 
 	// slices()
 
-	maps()
+	// maps()
+
+	functionValues()
 
 }
