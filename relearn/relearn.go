@@ -7,7 +7,10 @@ import (
 	"runtime"
 	"time"
 
+	"strings"
+
 	"golang.org/x/tour/pic"
+	"golang.org/x/tour/wc"
 )
 
 func add(x, y int) int {
@@ -238,6 +241,53 @@ func slices() {
 
 }
 
+func WordCount(s string) map[string]int {
+	m := map[string]int{}
+	for _, word := range strings.Fields(s) {
+		m[word] += 1
+	}
+	return m
+}
+
+func maps() {
+
+	type Vertex struct {
+		x, y int
+	}
+
+	var m map[string]Vertex // map variable is declared and not initialized
+
+	m = map[string]Vertex{}
+
+	m["abc"] = Vertex{1, 2}
+	fmt.Println(m)
+
+	m2 := make(map[string]Vertex) // declared and initialized
+
+	m2["def"] = Vertex{3, 4}
+	fmt.Println(m2)
+
+	var m3 = map[string]Vertex{
+		"a": Vertex{1, 2},
+		"b": Vertex{3, 4},
+	}
+	fmt.Println(m3)
+
+	var m4 = map[string]Vertex{
+		"a": {1, 2},
+		"b": {3, 4},
+	}
+	fmt.Println(m4)
+
+	m4["c"] = Vertex{5, 6}
+	elem, ok := m4["a"]
+	delete(m4, "a")
+	fmt.Println(m4, elem, ok)
+
+	wc.Test(WordCount)
+
+}
+
 func main() {
 	var a, b = 1, true
 	var x, y = swap(3, 4)
@@ -259,18 +309,20 @@ func main() {
 		fmt.Println(-z)
 	}
 
-	Sqrt(49)
+	// Sqrt(49)
 
-	Switch()
-	Switch2()
-	SwitchTrue()
+	// Switch()
+	// Switch2()
+	// SwitchTrue()
 
-	pointers()
+	// pointers()
 
-	structs()
+	// structs()
 
-	arrays()
+	// arrays()
 
-	slices()
+	// slices()
+
+	maps()
 
 }
