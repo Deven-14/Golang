@@ -16,6 +16,8 @@ func main() {
 
 	// reader2()
 
-	image_print()
+	// image_print()
+
+	typeParameters()
 
 }
