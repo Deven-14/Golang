@@ -239,6 +239,15 @@ func slices() {
 
 	pic.Show(Pic)
 
+	l := make([]int, 4)
+	l2 := make([]int, 0, 4)
+	l3 := []int{1, 2, 3}
+
+	l = append(l, l3...)   // [0, 0, 0, 0, 1, 2, 3] coz of len=cap=4
+	l2 = append(l2, l3...) // [1, 2, 3] coz of len=0, cap=4
+
+	fmt.Println(l, l2, l3)
+
 }
 
 func WordCount(s string) map[string]int {
@@ -367,10 +376,10 @@ func relearn1() {
 
 	// arrays()
 
-	// slices()
+	slices()
 
 	// maps()
 
-	functionValues()
+	// functionValues()
 
 }
