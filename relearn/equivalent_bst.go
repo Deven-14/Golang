@@ -41,6 +41,33 @@ func Same(t1, t2 *tree.Tree) bool {
 	}
 }
 
+func Same2(t1, t2 *tree.Tree) bool {
+	ch1 := make(chan int)
+	ch2 := make(chan int)
+	go func() {
+		Walk(t1, ch1)
+		close(ch1)
+	}()
+	go func() {
+		Walk(t2, ch2)
+		close(ch2)
+	}()
+	for {
+		value1, ok1 := <-ch1
+		value2, ok2 := <-ch2
+		if !ok1 && !ok2 {
+			return true
+		}
+		if ok1 != ok2 || value1 != value2 {
+			return false
+		}
+	}
+}
+
 func bst() {
 	fmt.Println(Same(tree.New(5), tree.New(5)))
+	fmt.Println(Same(tree.New(5), tree.New(3)))
+
+	fmt.Println(Same2(tree.New(5), tree.New(5)))
+	fmt.Println(Same2(tree.New(5), tree.New(3)))
 }
