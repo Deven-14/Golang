@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"golang.org/x/tour/tree"
 )
@@ -64,10 +65,36 @@ func Same2(t1, t2 *tree.Tree) bool {
 	}
 }
 
-func bst() {
-	fmt.Println(Same(tree.New(5), tree.New(5)))
-	fmt.Println(Same(tree.New(5), tree.New(3)))
+func Same3(t1, t2 *tree.Tree) bool {
+	ch1 := make(chan int, 10)
+	ch2 := make(chan int, 10)
+	go WalkAndClose(t1, ch1)
+	go WalkAndClose(t2, ch2)
+	for {
+		value1, ok1 := <-ch1
+		value2, ok2 := <-ch2
+		if !ok1 && !ok2 {
+			return true
+		}
+		if ok1 != ok2 || value1 != value2 {
+			return false
+		}
+	}
+}
 
-	fmt.Println(Same2(tree.New(5), tree.New(5)))
-	fmt.Println(Same2(tree.New(5), tree.New(3)))
+func bst() {
+	start := time.Now()
+	fmt.Println(Same(tree.New(1000000), tree.New(1000000)))
+	fmt.Println(Same(tree.New(1000000), tree.New(15000000)))
+	fmt.Println(time.Since(start))
+
+	start = time.Now()
+	fmt.Println(Same2(tree.New(1000000), tree.New(1000000)))
+	fmt.Println(Same2(tree.New(1000000), tree.New(15000000)))
+	fmt.Println(time.Since(start))
+
+	start = time.Now()
+	fmt.Println(Same3(tree.New(1000000), tree.New(1000000)))
+	fmt.Println(Same3(tree.New(1000000), tree.New(15000000)))
+	fmt.Println(time.Since(start))
 }
