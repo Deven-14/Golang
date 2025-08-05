@@ -24,6 +24,8 @@ func main() {
 
 	// bst()
 
-	Mutex()
+	// Mutex()
+
+	WebCrawler()
 
 }
