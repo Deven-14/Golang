@@ -2,7 +2,7 @@ package main
 
 func main() {
 
-	relearn1()
+	// relearn1()
 
 	// relearn2()
 
@@ -21,5 +21,9 @@ func main() {
 	// typeParameters()
 
 	// goroutinues()
+
+	// bst()
+
+	Mutex()
 
 }
