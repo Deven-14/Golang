@@ -13,6 +13,8 @@ func main() {
 
 	// alias()
 
-	part4()
+	// part4()
+
+	part5()
 
 }
