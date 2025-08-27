@@ -9,5 +9,8 @@ func main() {
 
 	// part2()
 
-	part3()
+	// part3()
+
+	alias()
+
 }
