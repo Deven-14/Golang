@@ -5,5 +5,7 @@ import "fmt"
 func main() {
 	fmt.Println("Hello World!")
 
-	part1()
+	// part1()
+
+	part2()
 }
