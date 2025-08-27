@@ -9,7 +9,7 @@ type MyInt int
 type AliasInt = int
 
 func alias() {
-	// var a MyInt = 10
+	var a MyInt = 10
 	var b int = 20
 	var c AliasInt = 30
 
@@ -18,4 +18,5 @@ func alias() {
 
 	// This will compile because AliasInt and int are the same type
 	fmt.Println(c == b) // Output: true
+	fmt.Printf("a is %T\nb is %T\nc is %T\n", a, b, c)
 }
