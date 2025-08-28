@@ -15,6 +15,8 @@ func main() {
 
 	// part4()
 
-	part5()
+	// part5()
+
+	part6()
 
 }
